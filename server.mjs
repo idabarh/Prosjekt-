@@ -22,9 +22,23 @@ function getPoem(req, res, next) {
     res.status(HTTP_CODES.SUCCESS.OK).send(`${poem}`).end();
 }
 
+function getQuotes(req, res, next) {
+    const quote = [
+    "Happiness depends upon ourselves. – Aristotle",
+    "Do what you can, with what you have, where you are. – Theodore Roosevelt",
+    "Stars can’t shine without darkness. – Unknown",
+    "Act as if what you do makes a difference. It does. – William James",
+    "Be yourself; everyone else is already taken. – Oscar Wilde" ];
+
+    const randomQuote = quote[Math.floor(Math.random()* quote.length)];
+    res.status(HTTP_CODES.SUCCESS.OK).send(randomQuote).end();
+
+}
+
 
 server.get("/", getRoot);
 server.get("/tmp/poem", getPoem);
+server.get("/tmp/quote", getQuotes);
 
 server.listen(server.get('port'), function () {
     console.log('server running', server.get('port'));
