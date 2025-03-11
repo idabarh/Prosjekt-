@@ -1,21 +1,20 @@
 {
-    "name": "Hekling API",
-    "short_name": "Hekling",
-    "start_url": "/index.html",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#ffcc99",
-    "icons": [
-      {
-        "src": "/icon-192x192.png",
-        "type": "image/png",
-        "sizes": "192x192"
-      },
-      {
-        "src": "/icon-512x512.png",
-        "type": "image/png",
-        "sizes": "512x512"
-      }
-    ]
-  }
-  
+  "name": "Hekling API",
+  "short_name": "Hekling",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffcc99",
+  "icons": [
+    {
+      "src": "/icons/iconSmall.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/iconLarge.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
