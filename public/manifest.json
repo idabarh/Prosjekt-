@@ -3,8 +3,8 @@
   "short_name": "Hekling",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffcc99",
+  "background_color": "#fdedec",
+  "theme_color": "#fdedec",
   "icons": [
     {
       "src": "/icons/iconSmall.png",
