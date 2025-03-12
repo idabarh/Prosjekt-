@@ -1,5 +1,5 @@
-import dbManager from "../data/database.mjs";
 import HTTP_CODES from "../utils/httpCodes.mjs";
+import dbManager from "../data/dbManage.mjs";
 
 // GET: Hent alle heklemønstre
 export const getAllPatterns = async (req, res) => {

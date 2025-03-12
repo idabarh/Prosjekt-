@@ -6,7 +6,7 @@ CREATE TABLE users (
 );
 
 
-CCREATE TABLE patterns (
+CREATE TABLE patterns (
     id SERIAL PRIMARY KEY,        
     user_id INT REFERENCES users(id) ON DELETE CASCADE,  
     name VARCHAR(255) NOT NULL,  

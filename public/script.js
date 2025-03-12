@@ -38,20 +38,36 @@ async function fetchPatterns() {
   }
 }
 
-//middleware
-async function sendRequest(endpoint, method = "GET", body = null) {
-  const headers = { "Content-Type": "application/json" };
-  if (sessionId) headers["X-Session-ID"] = sessionId;
+// script.js
+document.getElementById('login-btn').addEventListener('click', function() {
+  // Gjør et API-kall for å logge inn
+  fetch('http://localhost:8000/users/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: 'test@example.com',
+      password: 'password123'
+    })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data));
+});
 
-  const options = { method, headers };
-  if (body) options.body = JSON.stringify(body);
+document.getElementById('register-btn').addEventListener('click', function() {
+  // Gjør et API-kall for å registrere en ny bruker
+  fetch('http://localhost:8000/users/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: 'password123'
+    })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data));
+});
 
-  const response = await fetch(endpoint, options);
-  if (!response.ok) {
-    alert("Feil: " + (await response.json()).error);
-    return;
-  }
-}
 
 // Gjør funksjonene tilgjengelige globalt
 window.installPWA = installPWA;

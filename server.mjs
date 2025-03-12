@@ -1,11 +1,10 @@
 import express from 'express';
 import dotenv from "dotenv";
 import HTTP_CODES from "./utils/httpCodes.mjs";
-import middleware from "./Modules/middleware.mjs";
+import sessionMiddleware from "./Modules/sessionMiddleware.mjs";
 import patternRoutes from "./routes/patternRoutes.mjs";
 import cors from 'cors';
 import userRoutes from "./routes/userRoutes.mjs"; // Sørg for at stien er korrekt
-
 
 dotenv.config();
 
@@ -14,7 +13,7 @@ const port = process.env.PORT || 8000;
 
 server.set('port', port);
 
-server.use(middleware);
+server.use(sessionMiddleware);
 
 server.use(express.json());
 
