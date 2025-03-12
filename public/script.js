@@ -38,6 +38,21 @@ async function fetchPatterns() {
   }
 }
 
+//middleware
+async function sendRequest(endpoint, method = "GET", body = null) {
+  const headers = { "Content-Type": "application/json" };
+  if (sessionId) headers["X-Session-ID"] = sessionId;
+
+  const options = { method, headers };
+  if (body) options.body = JSON.stringify(body);
+
+  const response = await fetch(endpoint, options);
+  if (!response.ok) {
+    alert("Feil: " + (await response.json()).error);
+    return;
+  }
+}
+
 // Gjør funksjonene tilgjengelige globalt
 window.installPWA = installPWA;
 window.fetchPatterns = fetchPatterns;
