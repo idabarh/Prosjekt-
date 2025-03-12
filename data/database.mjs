@@ -1,6 +1,7 @@
 import pool from "./dbManager.mjs";
 
 
+
 const dbManager = {
     read: async (query, params = []) => {
       const { rows } = await pool.query(query, params);

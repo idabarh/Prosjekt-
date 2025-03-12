@@ -1,9 +1,11 @@
 import express from 'express';
 import dotenv from "dotenv";
 import HTTP_CODES from "./utils/httpCodes.mjs";
-import middleware from "./modules/middleware.mjs";
+import middleware from "./Modules/middleware.mjs";
 import patternRoutes from "./routes/patternRoutes.mjs";
 import cors from 'cors';
+import userRoutes from "./routes/userRoutes.mjs"; // Sørg for at stien er korrekt
+
 
 dotenv.config();
 
@@ -17,6 +19,7 @@ server.use(middleware);
 server.use(express.json());
 
 server.use(cors());
+server.use("/users", userRoutes); // Legg til ruten for /users
 server.use("/patterns", patternRoutes);
 server.use(express.static('public'));
 

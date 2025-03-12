@@ -10,17 +10,21 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false } // Render krever SSL
 });
 
-pool.connect()
-  .then(() => console.log(" Tilkoblet PostgreSQL"))
-  .catch(err => console.error(" Feil ved tilkobling:", err));
+// Test tilkoblingen med async/await
+async function testConnection() {
+  try {
+    await pool.connect();
+    console.log("Tilkoblet PostgreSQL");
 
-  pool.query("SELECT NOW()", (err, res) => {
-    if (err) {
-      console.error("Database connection test failed:", err);
-    } else {
-      console.log("Database connection successful, time:", res.rows[0]);
-    }
-  });
-  
+    // Kjøre en enkel query for å teste
+    const res = await pool.query("SELECT NOW()");
+    console.log("Database connection successful, time:", res.rows[0]);
+  } catch (err) {
+    console.error("Feil ved tilkobling:", err);
+  }
+}
+
+// Kall funksjonen for å teste tilkoblingen
+testConnection();
 
 export default pool;
