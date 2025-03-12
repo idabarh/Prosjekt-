@@ -1,4 +1,4 @@
-import dbManager from "../database/dbManager.mjs";
+import dbManager from '../data/dbManager.mjs';
 import crypto from 'crypto';
 
 function hashPassword(password) {
