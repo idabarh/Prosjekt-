@@ -1,13 +1,13 @@
 
-.bakcround{
- background-color: rgb(255, 219, 206);
-}
-
-.page {
-    display: none;
-  }
-  
-    .page.active {
-    display: block;
-  }
-  
+.backround{
+  background-color: rgb(255, 198, 177);
+ }
+ 
+ .page {
+     display: none;
+   }
+   
+     .page.active {
+     display: block;
+   }
+   

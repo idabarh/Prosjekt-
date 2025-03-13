@@ -1,3 +1,4 @@
+
 import express from "express";
 import * as crypto from "node:crypto";
 import pool from "../data/database.mjs";
@@ -11,14 +12,14 @@ function hashPassword(pswhash) {
 
 // Registrer en ny bruker
 router.post("/register", async (req, res) => {
-    const { name, email, pswhash } = req.body;
+    const { name, email, password } = req.body;
 
-    if (!name || !email || !pswhash) {
+    if (!name || !email || !password) {
         return res.status(HTTP_CODES.CLIENT_ERROR.BAD_REQUEST).json({ error: "Alle felt må fylles ut" });
     }
 
     try {
-        const hashedPassword = hashPassword(pswhash);
+        const hashedPassword = hashPassword(password);
         const result = await pool.query(
             "INSERT INTO users (name, email, pswhash) VALUES ($1, $2, $3) RETURNING id, name, email",
             [name, email, hashedPassword]

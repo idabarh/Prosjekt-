@@ -9,9 +9,7 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-
-    <h1>Velkommen</h1>
-
+<h1>Velkommen til min app</h1>
     <!-- Logg Inn Side -->
     <div id="loginPage" class="page active">
         <h2>Logg Inn</h2>
@@ -28,7 +26,7 @@
     </div>
 
     <!-- Registrer Deg Side -->
-    <div id="registerPage" class="page">
+    <div id="registerPage" class="page active">
         <h2>Registrer deg</h2>
         <div class="input-group">
             <label for="registerName">Navn</label>
@@ -41,16 +39,17 @@
         <div class="input-group">
             <label for="registerPassword">Passord</label>
             <input type="password" id="registerPassword" name="password" required placeholder="Ditt passord" />
-        </div>
-        <button type="button" onclick="register(event)">Registrer</button>
-        
+        </div><br>
+        <button type="button" onclick="register(event)">Registrer</button><br>
         <p>Har du allerede en konto? <a href="javascript:void(0);" onclick="showPage('loginPage')">Logg inn her</a></p>
     </div>
     
     <!-- Hjem Side (Skjult) -->
     <div id="homePage" class="page" style="display:none;">
-        <h2>Velkommen til Hekle Appen!</h2>
-        <button onclick="logout()">Logg ut</button>
+    <h2>Velkommen til Hekle Appen!</h2>
+    <p id="patterntext"></p>
+    <button onclick="logout()">Logg ut</button>
+</div>
     </div>
     
     </body>

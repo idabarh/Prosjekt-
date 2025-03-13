@@ -7,8 +7,8 @@ function showPage(pageId) {
 // Registrer Service Worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
-      .then((registration) => console.log('Service Worker registrert:', registration))
-      .catch((err) => console.log('Service Worker feilet:', err));
+    .then((registration) => console.log('Service Worker registrert:', registration))
+    .catch((err) => console.log('Service Worker feilet:', err));
 }
 
 // Håndter PWA-installasjon
@@ -20,15 +20,15 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 function installPWA() {
   if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-              console.log('Brukeren installerte PWA-en');
-          } else {
-              console.log('Brukeren avslo installasjonen');
-          }
-          deferredPrompt = null;
-      });
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('Brukeren installerte PWA-en');
+      } else {
+        console.log('Brukeren avslo installasjonen');
+      }
+      deferredPrompt = null;
+    });
   }
 }
 
@@ -40,11 +40,11 @@ async function fetchPatterns() {
   list.innerHTML = ""; // Tømmer eksisterende liste
 
   if (Array.isArray(response)) {
-      response.forEach((pattern) => {
-          const item = document.createElement("li");
-          item.textContent = `${pattern.name}: ${pattern.description}`;
-          list.appendChild(item);
-      });
+    response.forEach((pattern) => {
+      const item = document.createElement("li");
+      item.textContent = `${pattern.name}: ${pattern.description}`;
+      list.appendChild(item);
+    });
   }
 }
 
@@ -64,23 +64,23 @@ async function sendRequest(endpoint, method = "POST", body = null) {
   if (body) options.body = JSON.stringify(body);
 
   try {
-      const response = await fetch(endpoint, options);
-      if (!response.ok) {
-          const errorData = await response.json();
-          alert("Feil: " + errorData.error);
-          return;
-      }
+    const response = await fetch(endpoint, options);
+    if (!response.ok) {
+      const errorData = await response.json();
+      alert("Feil: " + errorData.error);
+      return;
+    }
 
-      const newSessionId = response.headers.get("X-Session-ID");
-      if (newSessionId && newSessionId !== sessionId) {
-          sessionId = newSessionId;
-          localStorage.setItem("session_id", sessionId);
-      }
+    const newSessionId = response.headers.get("X-Session-ID");
+    if (newSessionId && newSessionId !== sessionId) {
+      sessionId = newSessionId;
+      localStorage.setItem("session_id", sessionId);
+    }
 
-      return response.json();
+    return response.json();
   } catch (error) {
-      console.error("Feil:", error);
-      alert("Feil: " + error.message);
+    console.error("Feil:", error);
+    alert("Feil: " + error.message);
   }
 }
 
@@ -95,15 +95,15 @@ async function register(event) {
   const password = document.getElementById("registerPassword").value;
 
   if (!name || !email || !password) {
-      alert("Vennligst fyll ut alle feltene!");
-      return;
+    alert("Vennligst fyll ut alle feltene!");
+    return;
   }
 
   const response = await sendRequest("/users/register", "POST", { name, email, password });
 
   if (response?.id) {
-      alert("Registrering vellykket! Logg inn nå.");
-      showPage("loginPage");
+    alert("Registrering vellykket! Logg inn nå.");
+    showPage("loginPage");
   }
 }
 
@@ -115,19 +115,37 @@ async function login(event) {
   const password = document.getElementById("loginPassword").value;
 
   if (!email || !password) {
-      alert("Vennligst fyll ut alle feltene!");
-      return;
+    alert("Vennligst fyll ut alle feltene!");
+    //showPage('homePage');
+    return;
   }
 
 
   const response = await sendRequest("/users/login", "POST", { email, password });
 
   if (response?.user) {
-      alert("Innlogging vellykket!");
-      showPage("homePage");
+    //alert("Innlogging vellykket!");
+    showPage("homePage");
+    patterns()
   } else {
-      alert("Feil e-post eller passord!");
+    alert("Feil e-post eller passord!");
   }
+}
+
+async function patterns() {
+  const response = await sendRequest("/patterns", "GET");
+  console.log(response);
+
+  const homePg = document.getElementById("homePage");
+  homePg.style.display = "block";
+
+  const ptTxt = document.getElementById("patterntext");
+
+  // Loop through array elements
+  response.forEach(item => {
+      ptTxt.innerText = `Name: ${item.name} + item.difficulty`;
+
+  });
 }
 
 // Håndter utlogging

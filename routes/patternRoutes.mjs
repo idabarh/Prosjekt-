@@ -19,7 +19,7 @@ router.delete("/:id", deletePattern);
 router.get("/", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM patterns");
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
