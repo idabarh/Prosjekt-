@@ -32,20 +32,22 @@ router.post("/register", async (req, res) => {
 
 // Logg inn en bruker
 router.post("/login", async (req, res) => {
-    const { email, pswhash } = req.body;
+    const { email, password } = req.body;
 
-    if (!email || !pswhash) {
+    if (!email || !password) {
         return res.status(HTTP_CODES.CLIENT_ERROR.BAD_REQUEST).json({ error: "Alle felt må fylles ut" });
     }
 
     try {
         const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+
         if (result.rows.length === 0) {
-            return res.status(HTTP_CODES.CLIENT_ERROR.BAD_REQUEST).json({ error: "Bruker ikke funnet" });
+            return res.status(HTTP_CODES.CLIENT_ERROR.BAD_REQUEST).json({ error: "Bruker ikke funnet"});
+            //return result
         }
 
         const user = result.rows[0];
-        const hashedPassword = hashPassword(pswhash);
+        const hashedPassword = hashPassword(password);
 
         // Sammenlign passordet
         if (hashedPassword !== user.pswhash) {

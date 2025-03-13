@@ -11,20 +11,18 @@ dotenv.config();
 const server = express();
 const port = process.env.PORT || 8000;
 
+
 server.set('port', port);
 
-
+server.use(express.static('public'));
 server.use(express.json());
 
 server.use(sessionMiddleware);
 
-server.use(cors({ origin: "http://localhost:8000" })); // Endre porten hvis frontend bruker en annen
+console.log("DATABASE_URL:", process.env.DATABASE_URL ? "OK" : "Mangler!");
 
-  
-
-server.use("/users", userRoutes); // Legg til ruten for /users
+server.use("/users", userRoutes);
 server.use("/patterns", patternRoutes);
-server.use(express.static('public'));
 
 // Sørg for at manifest.json og serviceWorker.js blir servert riktig
 server.get('/manifest.json', (req, res) => {
@@ -37,11 +35,11 @@ server.get('/serviceWorker.js', (req, res) => {
 
 
 //middleware for å se om den fungerer
-server.get('/test-session', (req, res) => {
+/*server.get('/test-session', (req, res) => {
     req.session.visits = (req.session.visits || 0) + 1;
     req.saveSession();
     res.send(`Antall besøk: ${req.session.visits}`);
-});
+});*/
 
 server.listen(server.get('port'), function () {
     console.log('Server kjører på port', server.get('port'));
