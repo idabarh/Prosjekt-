@@ -5,11 +5,13 @@ import sessionMiddleware from "./Modules/sessionMiddleware.mjs";
 import patternRoutes from "./routes/patternRoutes.mjs";
 import cors from 'cors';
 import userRoutes from "./routes/userRoutes.mjs"; // Sørg for at stien er korrekt
+import { deletePattern } from "./controllers/patternController.mjs";
+
 
 dotenv.config();
 
 const server = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 
 
 server.set('port', port);
@@ -21,6 +23,7 @@ server.use(sessionMiddleware);
 
 console.log("DATABASE_URL:", process.env.DATABASE_URL ? "OK" : "Mangler!");
 
+server.delete("/patterns/:id", deletePattern);
 server.use("/users", userRoutes);
 server.use("/patterns", patternRoutes);
 

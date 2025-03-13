@@ -2,13 +2,18 @@
 function showPage(pageId) {
   document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
   document.getElementById(pageId).classList.add("active");
+  console.log("viser nå side: " + pageId.toString());
 }
 
 // Registrer Service Worker
+
 if ('serviceWorker' in navigator) {
+  //Skrudd av pga caching problemer
+  /*
   navigator.serviceWorker.register('/sw.js')
     .then((registration) => console.log('Service Worker registrert:', registration))
     .catch((err) => console.log('Service Worker feilet:', err));
+  */
 }
 
 // Håndter PWA-installasjon
@@ -140,12 +145,34 @@ async function patterns() {
   homePg.style.display = "block";
 
   const ptTxt = document.getElementById("patterntext");
+  if (!ptTxt) {
+    console.error("Elementet 'patterntext' finnes ikke i DOM-en.");
+    return;
+  }
 
-  // Loop through array elements
+  ptTxt.innerHTML = ""; // Tømmer gammel data før vi legger til nye elementer
+
   response.forEach(item => {
-      ptTxt.innerText = `Name: ${item.name} + item.difficulty`;
-
+    ptTxt.innerHTML += `
+    <p class="patterns-item">
+      Name: <input type="text" value="${item.name}"/> , 
+      Difficulty: ${item.difficulty} , 
+      Materials: ${item.materials}, 
+      Instructions: ${item.instructions}
+      <button id="buttonDel${item.id}" onclick="deletePattern(${item.id})">Slett</button>
+    </p>`;
   });
+}
+
+async function deletePattern(id) {
+  if (!confirm("Er du sikker på at du vil slette dette mønsteret?")) return;
+
+  const response = await sendRequest(`/patterns/${id}`, "DELETE");
+
+  if (response) {
+    alert("Mønster slettet!");
+    patterns(); // Henter oppdatert liste
+  }
 }
 
 // Håndter utlogging
@@ -163,3 +190,5 @@ window.register = register;
 window.login = login;
 window.logout = logout;
 window.showPage = showPage;
+window.deletePattern = deletePattern;
+

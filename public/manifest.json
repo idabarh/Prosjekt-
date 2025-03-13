@@ -1,5 +1,5 @@
 {
-  "name": "Hekling API",
+  "name": "Hekling app",
   "short_name": "Hekling",
   "start_url": "/index.html",
   "display": "standalone",

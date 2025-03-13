@@ -1,6 +1,6 @@
 
 .backround{
-  background-color: rgb(255, 198, 177);
+  background-color: rgb(255, 212, 196);
  }
  
  .page {
@@ -11,3 +11,16 @@
      display: block;
    }
    
+
+   .patterns-item{
+    border: thin solid black;
+   }
+
+   #homePage {
+    display: none;
+  }
+  
+  #patterntext {
+    display: block;
+  }
+  
