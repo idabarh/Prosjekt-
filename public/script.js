@@ -5,13 +5,13 @@ import { addPattern } from "./patterns.mjs";
 
 
 // Registrer Service Worker
-/*if ('serviceWorker' in navigator) {
-  /*
+if ('serviceWorker' in navigator) {
+  
   navigator.serviceWorker.register('/sw.js')
     .then((registration) => console.log('Service Worker registrert:', registration))
     .catch((err) => console.log('Service Worker feilet:', err));
   
-}*/
+}
 
 // Håndter PWA-installasjon
 let deferredPrompt;

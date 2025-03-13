@@ -30,6 +30,9 @@ server.get("/test-session", (req, res) => {
   res.json({ message: "Session lagret!", session: req.session });
 });
 
+console.log("DATABASE_URL:", process.env.DATABASE_URL ? "OK" : "Mangler!");
+
+
 // API-ruter
 server.use("/users", userRoutes);
 server.use("/patterns", patternRoutes);
