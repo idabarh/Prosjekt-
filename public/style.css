@@ -1,0 +1,13 @@
+
+body {background-color: rgb(255, 219, 206);}
+
+/* Skjuler sider som ikke er aktive */
+.page {
+    display: none;
+  }
+  
+  /* Vist den aktive siden */
+  .page.active {
+    display: block;
+  }
+  

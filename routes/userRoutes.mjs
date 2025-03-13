@@ -9,6 +9,7 @@ function hashPassword(pswhash) {
     return crypto.createHash("sha256").update(pswhash).digest("hex");
 }
 
+// Registrer en ny bruker
 router.post("/register", async (req, res) => {
     const { name, email, pswhash } = req.body;
 
@@ -24,10 +25,12 @@ router.post("/register", async (req, res) => {
         );
         res.status(HTTP_CODES.SUCCESS.CREATED).json(result.rows[0]);
     } catch (error) {
+        console.error("Feil ved registrering:", error.message);
         res.status(HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR).json({ error: error.message });
     }
 });
 
+// Logg inn en bruker
 router.post("/login", async (req, res) => {
     const { email, pswhash } = req.body;
 
@@ -44,10 +47,12 @@ router.post("/login", async (req, res) => {
         const user = result.rows[0];
         const hashedPassword = hashPassword(pswhash);
 
+        // Sammenlign passordet
         if (hashedPassword !== user.pswhash) {
             return res.status(HTTP_CODES.CLIENT_ERROR.BAD_REQUEST).json({ error: "Feil passord" });
         }
 
+        // Sett brukerens ID i sesjonen
         if (!req.session) {
             return res.status(HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR).json({ error: "Session ikke tilgjengelig" });
         }
@@ -55,6 +60,7 @@ router.post("/login", async (req, res) => {
         req.session.userId = user.id;
         res.json({ message: "Innlogging vellykket", user: { id: user.id, name: user.name, email: user.email } });
     } catch (error) {
+        console.error("Feil ved innlogging:", error.message);
         res.status(HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR).json({ error: error.message });
     }
 });

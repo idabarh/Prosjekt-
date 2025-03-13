@@ -13,11 +13,15 @@ const port = process.env.PORT || 8000;
 
 server.set('port', port);
 
-server.use(sessionMiddleware);
 
 server.use(express.json());
 
-server.use(cors());
+server.use(sessionMiddleware);
+
+server.use(cors({ origin: "http://localhost:8000" })); // Endre porten hvis frontend bruker en annen
+
+  
+
 server.use("/users", userRoutes); // Legg til ruten for /users
 server.use("/patterns", patternRoutes);
 server.use(express.static('public'));

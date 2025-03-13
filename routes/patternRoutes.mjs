@@ -16,4 +16,13 @@ router.post("/", createPattern);
 router.put("/:id", updatePattern);
 router.delete("/:id", deletePattern);
 
+router.get("/", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM patterns");
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 export default router;

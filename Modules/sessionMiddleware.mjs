@@ -16,7 +16,6 @@ const sessionMiddleware = session({
   }
 });
 
-
 export default (req, res, next) => {
   console.log("Session før:", req.session);
   sessionMiddleware(req, res, () => {
@@ -24,3 +23,4 @@ export default (req, res, next) => {
     next();
   });
 };
+
