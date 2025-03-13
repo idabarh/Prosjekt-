@@ -1,26 +1,49 @@
-import session from "express-session";
-import dotenv from "dotenv";
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-dotenv.config();
+// Hent riktig filbane for session-data
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const sessionFile = path.join(__dirname, '../data/sessionData.json');
 
-const isProduction = process.env.NODE_ENV === "production";
-
-const sessionMiddleware = session({
-  secret: process.env.SESSION_SECRET || "secretkey",
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    secure: isProduction === "production",
-    httpOnly: true,
-    sameSite: "Lax"
+// Last inn eksisterende session-data
+let sessions = {};
+if (fs.existsSync(sessionFile)) {
+  try {
+    const data = fs.readFileSync(sessionFile, 'utf-8');
+    sessions = JSON.parse(data);
+  } catch (err) {
+    console.error("Feil ved lesing av sessionData.json:", err);
   }
+}
+
+// Middleware for å håndtere sessions
+export function sessionMiddleware(req, res, next) {
+  let sessionId = req.cookies.sessionId;
+
+  if (!sessionId || !sessions[sessionId]) {
+    sessionId = Math.random().toString(36).substring(2, 15);
+    sessions[sessionId] = { createdAt: new Date().toISOString(), visits: 0 };
+    res.cookie('sessionId', sessionId, { httpOnly: true });
+  }
+
+  req.session = sessions[sessionId];
+  req.session.visits += 1;
+
+  // Funksjon for å lagre sessions
+  req.saveSession = () => {
+    fs.writeFile(sessionFile, JSON.stringify(sessions, null, 2), (err) => {
+      if (err) console.error("Feil ved lagring av sessionData.json:", err);
+    });
+  };
+
+  req.saveSession();
+  next();
+}
+
+// Lagre sessioner ved avslutning
+process.on('exit', () => fs.writeFileSync(sessionFile, JSON.stringify(sessions, null, 2)));
+process.on('SIGINT', () => {
+  fs.writeFileSync(sessionFile, JSON.stringify(sessions, null, 2));
+  process.exit();
 });
-
-export default (req, res, next) => {
-  console.log("Session før:", req.session);
-  sessionMiddleware(req, res, () => {
-    console.log("Session etter:", req.session);
-    next();
-  });
-};
-

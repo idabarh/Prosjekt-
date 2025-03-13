@@ -1,9 +1,10 @@
 {
-  "test123": {
-    "visits": 2
+  "6ivwhnxjgak": {
+    "createdAt": "2025-03-13T23:04:33.768Z",
+    "userId": 267,
+    "timestamp": "2025-03-13T23:07:39.999Z"
   },
-  "default": {
-    "visits": 4
-  },
-  "user123": {}
+  "6j9pcqfppzr": {
+    "createdAt": "2025-03-13T23:07:34.836Z"
+  }
 }

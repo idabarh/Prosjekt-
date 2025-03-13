@@ -6,7 +6,7 @@
     <title>Min Hekle App</title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="/style.css">
-    <script defer src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </head>
 <body>
 <h1>Velkommen til min app</h1>
@@ -49,6 +49,25 @@
     <h2>Velkommen til Hekle Appen!</h2>
     <p id="patterntext"></p>
     <button onclick="logout()">Logg ut</button>
+
+    <!-- Legg til ny oppskrift -->
+<div id="addPatternSection">
+    <h2>Legg til ny oppskrift</h2>
+    <label for="patternName">Navn:</label>
+    <input type="text" id="patternName" placeholder="Oppskriftsnavn">
+
+    <label for="patternDifficulty">Vanskelighetsgrad:</label>
+    <input type="text" id="patternDifficulty" placeholder="F.eks. Lett, Middels, Vanskelig">
+
+    <label for="patternMaterials">Materialer:</label>
+    <input type="text" id="patternMaterials" placeholder="F.eks. Garn, heklenål">
+
+    <label for="patternInstructions">Instruksjoner:</label>
+    <textarea id="patternInstructions" placeholder="Skriv instruksjoner her..."></textarea>
+
+    <button onclick="addPattern()">Legg til oppskrift</button>
+</div>
+
 </div>
     </div>
     
