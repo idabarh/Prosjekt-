@@ -44,10 +44,26 @@ export async function login(event) {
   }
 }
 
+// Sjekk om brukeren allerede er logget inn når siden lastes
+export function checkLoginStatus() {
+    const sessionId = localStorage.getItem("session_id");
+    if (sessionId) {
+        showPage("homePage"); // Gå direkte til hjemmesiden
+        patterns(); // Last inn oppskrifter
+    } else {
+        showPage("loginPage"); // Brukeren er ikke logget inn, vis innloggingssiden
+    }
+}
+
 // Håndter utlogging
 export function logout() {
-  localStorage.removeItem("session_id");
-  sessionId = null;
+  localStorage.removeItem("session_id"); // Fjern session ID fra localStorage
+
+  // Eventuell ekstra rydding
+  if (typeof sessionId !== "undefined") {
+    sessionId = null; // Unngå feil hvis den ikke eksisterer
+  }
+
   alert("Du er logget ut!");
-  showPage("loginPage");
+  showPage("loginPage"); // Gå tilbake til innloggingssiden
 }

@@ -8,17 +8,21 @@
     <link rel="stylesheet" href="/style.css">
     <script type="module" src="script.js"></script>
 </head>
+
 <body>
-<h1>Velkommen til min app</h1>
+
     <!-- Logg Inn Side -->
     <div id="loginPage" class="page active">
-        <h2>Logg Inn</h2>
+        <span style='font-size:100px;'>&#129526;</span>
+
+        <h1>Velkommen til hekle appen</h1>
+        <h2>Logg Inn:</h2>
         <div class="input-group">
             <label for="loginEmail">E-post</label>
             <input type="email" id="loginEmail" name="email" required placeholder="Din e-post" />
         </div>
         <div class="input-group">
-            <label for="loginPassword">Passord</label>
+            <label for="loginPassword">Passord:</label>
             <input type="password" id="loginPassword" name="password" required placeholder="Ditt passord" />
         </div><br>
         <button type="button" onclick="login(event)">Logg inn</button>
@@ -27,20 +31,20 @@
 
     <!-- Registrer Deg Side -->
     <div id="registerPage" class="page active">
-        <h2>Registrer deg</h2>
+        <h2>Registrer ny bruker her:</h2>
         <div class="input-group">
-            <label for="registerName">Navn</label>
+            <label for="registerName">Navn:</label>
             <input type="text" id="registerName" name="name" required placeholder="Ditt navn" />
         </div>
         <div class="input-group">
-            <label for="registerEmail">E-post</label>
+            <label for="registerEmail">E-post:</label>
             <input type="email" id="registerEmail" name="email" required placeholder="Din e-post" />
         </div>
         <div class="input-group">
-            <label for="registerPassword">Passord</label>
+            <label for="registerPassword">Passord:</label>
             <input type="password" id="registerPassword" name="password" required placeholder="Ditt passord" />
         </div><br>
-        <button type="button" onclick="register(event)">Registrer</button><br>
+        <button type="button" onclick="register(event)">Registrer:</button><br>
         <p>Har du allerede en konto? <a href="javascript:void(0);" onclick="showPage('loginPage')">Logg inn her</a></p>
     </div>
     
@@ -48,7 +52,6 @@
     <div id="homePage" class="page" style="display:none;">
     <h2>Velkommen til Hekle Appen!</h2>
     <p id="patterntext"></p>
-    <button onclick="logout()">Logg ut</button>
 
     <!-- Legg til ny oppskrift -->
 <div id="addPatternSection">
@@ -67,6 +70,8 @@
 
     <button onclick="addPattern()">Legg til oppskrift</button>
 </div>
+    <button onclick="logout()">Logg ut</button>
+
 
 </div>
     </div>

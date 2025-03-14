@@ -1,26 +1,176 @@
-
-.backround{
+/* Generell styling */
+body {
+  font-family: Arial, sans-serif;
   background-color: rgb(255, 212, 196);
- }
- 
- .page {
-     display: none;
-   }
-   
-     .page.active {
-     display: block;
-   }
-   
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
 
-   .patterns-item{
-    border: thin solid black;
-   }
+/* Logg inn / registrer deg side */
+#loginPage, #registerPage {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  margin: 50px auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
 
-   #homePage {
-    display: none;
-  }
-  
-  #patterntext {
-    display: block;
-  }
-  
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #ffcc00;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #e6b800;
+}
+
+/* Hjemmeside (oppskrifter) */
+#homePage {
+  max-width: 800px;
+  margin: 30px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.patterns-item {
+  border: 1px solid black;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: left;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.patterns-item label {
+  font-weight: bold;
+  display: block;
+  margin-top: 5px;
+}
+
+.patterns-item input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+}
+
+.patterns-item input:focus {
+  background-color: #fff;
+}
+
+/* Knappestiler */
+.edit-btn, .save-btn, .delete-btn {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.edit-btn {
+  background-color: #ffcc00;
+  color: black;
+}
+
+.edit-btn:hover {
+  background-color: #e6b800;
+}
+
+.save-btn {
+  background-color: #4CAF50;
+  color: white;
+  display: none;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000;
+}
+
+/* Legg til ny oppskrift */
+#addPatternSection {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 600px;
+  margin: 30px auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+#addPatternSection h2 {
+  text-align: center;
+}
+
+#addPatternSection label {
+  font-weight: bold;
+  display: block;
+  margin: 10px 0 5px;
+}
+
+#addPatternSection input, #addPatternSection textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#addPatternSection button {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  background-color: #4CAF50;
+  color: white;
+}
+
+#addPatternSection button:hover {
+  background-color: #45a049;
+}
