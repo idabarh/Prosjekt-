@@ -25,7 +25,7 @@
             <label for="loginPassword">Passord:</label>
             <input type="password" id="loginPassword" name="password" required placeholder="Ditt passord" />
         </div><br>
-        <button type="button" onclick="login(event)">Logg inn</button>
+        <button onclick="login(event)">Logg inn</button>
 
     </div>
 
@@ -44,13 +44,14 @@
             <label for="registerPassword">Passord:</label>
             <input type="password" id="registerPassword" name="password" required placeholder="Ditt passord" />
         </div><br>
-        <button type="button" onclick="register(event)">Registrer:</button><br>
+        <button type="button" onclick="register(event)">Registrer</button><br>
         <p>Har du allerede en konto? <a href="javascript:void(0);" onclick="showPage('loginPage')">Logg inn her</a></p>
     </div>
     
     <!-- Hjem Side (Skjult) -->
     <div id="homePage" class="page" style="display:none;">
-    <h2>Velkommen til Hekle Appen!</h2>
+    <h2><p>Her ser du dine prosjekter &#129392;</p></h2>
+
     <p id="patterntext"></p>
 
     <!-- Legg til ny oppskrift -->
@@ -72,6 +73,9 @@
 </div>
     <button onclick="logout()">Logg ut</button>
 
+    <div>
+        <button id="deleteUserButton" class="delete-btn">Slett Bruker</button>
+    </div>
 
 </div>
     </div>

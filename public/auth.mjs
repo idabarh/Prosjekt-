@@ -67,3 +67,22 @@ export function logout() {
   alert("Du er logget ut!");
   showPage("loginPage"); // Gå tilbake til innloggingssiden
 }
+
+async function deleteUser() {
+  if (!confirm("Er du sikker på at du vil slette kontoen din?")) return;
+
+  const response = await sendRequest("/users/me", "DELETE");
+
+  if (response) {
+      alert("Bruker slettet! Du blir sendt tilbake til registrering.");
+      showPage("registerPage"); // Sender brukeren tilbake til registrering
+  }
+}
+
+// Legg til event listener når DOM er lastet
+document.addEventListener("DOMContentLoaded", () => {
+  const deleteUserButton = document.getElementById("deleteUserButton");
+  if (deleteUserButton) {
+      deleteUserButton.addEventListener("click", deleteUser);
+  }
+});

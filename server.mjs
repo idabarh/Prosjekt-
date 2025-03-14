@@ -21,6 +21,7 @@ server.use(express.static('public'));
 // Bruk session middleware
 server.use(sessionMiddleware);
 
+
 // Test-session for å sjekke at det fungerer
 server.get("/test-session", (req, res) => {
   req.session.userId = req.session.userId || Math.floor(Math.random() * 1000);
@@ -29,9 +30,6 @@ server.get("/test-session", (req, res) => {
   
   res.json({ message: "Session lagret!", session: req.session });
 });
-
-console.log("DATABASE_URL:", process.env.DATABASE_URL ? "OK" : "Mangler!");
-
 
 // API-ruter
 server.use("/users", userRoutes);

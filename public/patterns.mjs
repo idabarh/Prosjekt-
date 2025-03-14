@@ -49,7 +49,7 @@ export async function patterns() {
     ptTxt.innerHTML += `
       <p class="patterns-item" id="pattern-${item.id}">
         Oppskrift: <input type="text" id="name-${item.id}" value="${item.name}" readonly />  
-        Nivå: <input type="text" id="difficulty-${item.id}" value="${item.difficulty}" readonly />  
+        Vanskelighetsgrad: <input type="text" id="difficulty-${item.id}" value="${item.difficulty}" readonly />  
         Materialer: <input type="text" id="materials-${item.id}" value="${item.materials}" readonly /> 
         Instruksjoner: <input type="text" id="instructions-${item.id}" value="${item.instructions}" readonly />
         <button class="edit-btn" id="editButton-${item.id}" onclick="editPattern(${item.id})">Endre</button>
@@ -125,3 +125,5 @@ export async function deletePattern(id) {
     patterns();
   }
 }
+
+

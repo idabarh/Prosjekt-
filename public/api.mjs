@@ -17,7 +17,7 @@ export async function sendRequest(endpoint, method = "POST", body = null) {
 
     const newSessionId = response.headers.get("X-Session-ID");
     if (newSessionId && newSessionId !== sessionId) {
-      sessionId = newSessionId;
+      sessionId = newSessionId;z
       localStorage.setItem("session_id", sessionId);
     }
 

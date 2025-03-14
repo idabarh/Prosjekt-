@@ -47,3 +47,11 @@ process.on('SIGINT', () => {
   fs.writeFileSync(sessionFile, JSON.stringify(sessions, null, 2));
   process.exit();
 });
+
+export function authenticateUser(req, res, next) {
+  if (!req.session || !req.session.userId) {
+      return res.status(401).json({ error: "Du må være logget inn for å gjøre dette" });
+  }
+  next();
+}
+

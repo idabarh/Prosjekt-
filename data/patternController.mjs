@@ -80,3 +80,4 @@ export const deletePattern = async (req, res) => {
     res.status(HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR).json({ error: error.message });
   }
 };
+

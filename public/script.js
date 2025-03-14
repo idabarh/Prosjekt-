@@ -41,3 +41,4 @@ document.addEventListener("DOMContentLoaded", () => {
   window.logout = logout;
   window.addPattern = addPattern;
 });
+
