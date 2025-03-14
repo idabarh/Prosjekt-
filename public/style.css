@@ -188,3 +188,18 @@ button:hover {
 .delete-btn:hover {
   background-color: #cc0000;
 }
+
+/* Plasser logg inn og registrer ved siden av hverandre */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Mellomrom mellom boksene */
+}
+
+/* Sørg for at boksene har lik størrelse */
+#loginPage, #registerPage {
+  width: 350px; /* Samme bredde på begge */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

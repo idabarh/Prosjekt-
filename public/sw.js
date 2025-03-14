@@ -18,7 +18,7 @@ self.addEventListener('install', (event) => {
 });
 
 //Hent fra cache, men sjekk for oppdateringer
-self.addEventListener('fetch', (event) => {
+/* self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
       return (
@@ -32,7 +32,7 @@ self.addEventListener('fetch', (event) => {
       );
     })
   );
-});
+}); */
 
 //Aktiver ny SW og fjern gammel cache
 self.addEventListener('activate', (event) => {
